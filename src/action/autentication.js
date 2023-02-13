@@ -1,6 +1,8 @@
 import { authFirebase } from "../config/firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut, getAuth } from "firebase/auth";
 import { getDataUser } from "./fb_database";
+
+const auth = getAuth();
 
 export const checkDataLogin = async (setIsLogin, setDataUser = () => {
     }, setDataUserInfo = () => { }) => {
@@ -9,7 +11,7 @@ export const checkDataLogin = async (setIsLogin, setDataUser = () => {
             setIsLogin(false)
         } else {
             setIsLogin(true)
-            onAuthStateChanged(authFirebase, async (user) => {
+            onAuthStateChanged(auth, async (user) => {
                 if (user) {
                     setDataUser(user)
                     setDataUserInfo(await getDataUser(user.uid))
@@ -23,7 +25,7 @@ export const checkDataLogin = async (setIsLogin, setDataUser = () => {
 export const firebaseLogout = async () => {
     localStorage.setItem('jwt-token', null);
     localStorage.setItem('UID', null);
-    signOut(authFirebase)
+    signOut(auth)
     console.log('Signed Out');
 
 }

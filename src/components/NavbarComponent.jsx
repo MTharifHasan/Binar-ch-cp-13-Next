@@ -55,12 +55,33 @@ export default function NavbarComponent() {
                     className="nav-item">
                         Leaderboard
                     </Nav.Link>
+                    {isLogin? (
+                        <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <Nav.Link 
+                    href="/profiles"
+                    className="nav-item ms-auto">
+                        Profile
+                    </Nav.Link>
+                    <Nav.Link 
+                    href="#"
+                    className="nav-link ms-auto"
+                    onClick={() => {
+                        if (window.confirm("Are you sure to Logout?")) {
+                          handleLogout();
+                        }
+                      }}
+                      >
+                        LOGOUT
+                    </Nav.Link>
+                    </ul>
+                    ):(
                     <Nav.Link 
                     href="/login"
                     onClick={toggleModal}
                     className="nav-item">
                         LOGIN
                     </Nav.Link>
+                    )}
 
                 </Nav>
                 </Container>

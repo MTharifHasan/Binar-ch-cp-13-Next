@@ -1,15 +1,8 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
-
-
 import { Component } from "react";
 import { Form, Container, Card, CardGroup, Row, Col } from 'react-bootstrap';
 // import { authFirebase, database } from "../config/firebase"
-
-// import '../assets/pages/home/styles.css';
-// import '../assets/pages/home/scripts.js';
+import '../styles/styles.module.css';
+// import '../styles/scripts.js';
 
 import imgHeader from '../components/images/header-bg.jpg'
 import logo from '../components/images/echamp-white.png'

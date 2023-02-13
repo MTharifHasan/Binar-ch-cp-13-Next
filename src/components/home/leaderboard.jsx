@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { getLeaderBoard } from "../../action/games"
 import LeaderboardCard from './leaderboard_card';
-import { database } from "../../config/firebase"
+// import { database } from "../../config/firebase"
+import { getDatabase } from 'firebase/database'
+
+const database = getDatabase();
 
 const Leaderboard = (props) => {
     const [dataList, setDataList] = useState([]);

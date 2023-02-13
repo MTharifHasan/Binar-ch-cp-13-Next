@@ -32,6 +32,8 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
     checkDataLogin(setIsLogin);
   }, []);
 
+  console.log(Login);
+
   return (
     <>
       <nav
@@ -111,8 +113,10 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
           </div>
         </div>
       </nav>
+      { (
       <Login showModal={showModal} toggleFunc={toggleModal} />
-    </>
+       ) }
+      </>
   );
 };
 

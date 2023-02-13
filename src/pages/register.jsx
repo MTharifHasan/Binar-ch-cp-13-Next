@@ -10,13 +10,12 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card';
 
-import {
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification, getAuth } from "firebase/auth";
 import { registerUser2 } from "../action/fb_database"
 
-const auth = authFirebase;
+const auth = getAuth();
+console.log(auth);
+
 
 class Register extends Component {
   state = {
@@ -36,7 +35,7 @@ class Register extends Component {
     const { email, password } = this.state;
     createUserWithEmailAndPassword(auth, email, password)
       .then((res) => {
-        registerUser2(
+        (
           res.user.uid,
           this.state.name,
           this.state.username,

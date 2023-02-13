@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { authFirebase } from "../config/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { checkDataLogin, firebaseLogout } from "../action/autentication";
 
 import Button from 'react-bootstrap/Button';
@@ -19,6 +19,8 @@ import { connect } from 'react-redux'
 
 import styles from '../styles/login.module.css'
 
+const auth = getAuth();
+
 class Login extends Component {
   state = {
     email: '',
@@ -31,7 +33,7 @@ class Login extends Component {
     console.log(this.state);
         
         this.setState({flagginglogin:true})
-    signInWithEmailAndPassword(authFirebase, this.state.email, this.state.password)
+    signInWithEmailAndPassword(auth, this.state.email, this.state.password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user)
@@ -43,7 +45,7 @@ class Login extends Component {
         localStorage.setItem('jwt-token', user.accessToken)
         localStorage.setItem('UID', user.uid)
         window.location.href = '/'
-        // console.log(user.uid)
+        console.log(user.uid)
       })
       .catch((error) => {
         const errorMessage = error.message;

@@ -2,12 +2,13 @@ import { useEffect, useState } from "react"
 import { getAuth,createUserWithEmailAndPassword, signInWithEmailAndPasswor, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
 import { getDownloadURL, ref , uploadBytes, deleteObject,getMetadata,updateMetadata } from "firebase/storage"
 import { initializeApp } from "firebase/app";
-import { authFirebase,storage } from "../config/firebase";
+import { authFirebase } from "../config/firebase";
+import { getStorage } from 'firebase/storage';
 import { Alert } from "react-bootstrap";
 import { set } from "firebase/database"
 
-// const auth = getAuth();
-
+const auth = getAuth();
+const storage = getStorage();
 // initialize
 
 // export const uploadProfileImg = async (fileObject) => {
@@ -22,7 +23,7 @@ export function useAuth(){
   const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(authFirebase, user => setCurrentUser(user));
+    const unsub = onAuthStateChanged(auth, user => setCurrentUser(user));
     return unsub;
   }, [])
   return currentUser

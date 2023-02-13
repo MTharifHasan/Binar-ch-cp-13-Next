@@ -1,10 +1,10 @@
 import { async } from "@firebase/util";
-import { set, ref, push, onValue, update } from "firebase/database";
+import { set, ref, push, onValue, update, getDatabase } from "firebase/database";
 import { database } from "../config/firebase";
 import { authFirebase } from "../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-const db = database;
+const db = getDatabase();
 
 //write biodata
 
@@ -68,7 +68,7 @@ export const retrieveAllUser = () => {
     onValue(dbRef, (snapshot) => {
       const value = [];
       // Ubah Object ke Array of Object
-      Object.keys(snapshot.val()).map((key) => {
+      Object.keys(snapshot.val()||{}).map((key) => {
         value.push({
           id: key,
           data: snapshot.val()[key],
@@ -86,7 +86,7 @@ export const retrieveAllScore = () => {
     onValue(dbRef, (snapshot) => {
       const value = [];
       // Ubah Object ke Array of Object
-      Object.keys(snapshot.val()).map((key) => {
+      Object.keys(snapshot.val()||{}).map((key) => {
         value.push({
           id: key,
           data: snapshot.val()[key],
