@@ -4,7 +4,7 @@ import { Form, Container, Card, CardGroup, Row, Col } from 'react-bootstrap';
 import '../styles/styles.module.css';
 // import '../styles/scripts.js';
 
-import imgHeader from '../components/images/header-bg.jpg'
+// import imgHeader from './assets/images/header-bg.jpg'
 import logo from '../components/images/echamp-white.png'
 import btnSlide from '../components/images/scroll_down.svg'
 import GameCard from '../components/home/game_card'
@@ -116,7 +116,7 @@ class Home extends Component {
 
 var style = {
   header: {
-    backgroundImage: `url(${imgHeader})`,
+    backgroundImage: `url('/assets/images/header-bg.jpg')`,
     paddingTop: 250,
     paddingBottom: 200,
     textAlign: 'center',
