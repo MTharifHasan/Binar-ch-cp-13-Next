@@ -2,9 +2,9 @@ import { Component, useState, useEffect, useCallback, Fragment } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import { Form, Container, Card, CardGroup, Row, Col } from "react-bootstrap";
 import Navbar from "../components/NavbarComponent";
-import { database } from "../../config/firebase"
-import { halamanGameVerifikasi, insertGameScore } from "../../action/games";
-import { checkDataLogin } from "../../action/autentication";
+// import { database } from "../../config/firebase"
+import { halamanGameVerifikasi, insertGameScore } from "../action/games";
+// import { checkDataLogin } from "../../action/autentication";
 // https://react-unity-webgl.dev/
 // https://github.com/jeffreylanters/react-unity-webgl/discussions/264
 

@@ -12,12 +12,14 @@ import Form from 'react-bootstrap/Form';
 
 
 
+
 import logo from '../components/images/echamp.png';
 import { connect } from 'react-redux'
 
 
 
 import styles from '../styles/login.module.css'
+import Link from "next/link";
 
 const auth = getAuth();
 
@@ -94,10 +96,10 @@ class Login extends Component {
                   </Form>
                 </div>
                 <div className="lupa_pass">
-                  <span>Lupa password? klik&nbsp;<a href="#">disini</a></span>
+                  <span>Lupa password? klik&nbsp;<Link href="#">disini</Link></span>
                 </div>
                 <div >
-                  <span>Belum punya akun?&nbsp;<a href="/register">Buat akun</a>&nbsp;baru</span>
+                  <span>Belum punya akun?&nbsp;<Link href="/register">Buat akun</Link>&nbsp;baru</span>
                   <p>Login Name {this.props.userName}</p>
                 </div>
               </Col>

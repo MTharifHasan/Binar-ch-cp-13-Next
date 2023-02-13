@@ -7,6 +7,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { authFirebase } from "../config/firebase";
 import { checkDataLogin, firebaseLogout } from "../action/autentication";
 import { useNavigate } from "react-router-dom";
+import Link from "next/link";
 
 const Navbar = ({ bgColor, user, transparant = false }) => {
   const [showModal, setShowModal] = useState(false);
@@ -46,9 +47,9 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
         id="mainNav"
       >
         <div className="container">
-          <a className="navbar-brand" href="/">
+          <Link className="navbar-brand" href="/">
             <img src={logo} />
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -64,31 +65,31 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav text-uppercase ms-5 py-4 py-lg-0">
               <li className="nav-item">
-                <a className="nav-link" href="/#">
+                <Link className="nav-link" href="/#">
                   HOME
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/#game">
+                <Link className="nav-link" href="/#game">
                   GAME
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/#leaderboard">
+                <Link className="nav-link" href="/#leaderboard">
                   LEADERBOARD
-                </a>
+                </Link>
               </li>
             </ul>
             {isLogin ? (
               <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                 <li className="nav-item">
-                  <a className="nav-link" href={`/profiles`}>
+                  <Link className="nav-link" href={`/profiles`}>
                     PROFILE
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  {/* <a className="nav-link" href="#" onClick={handleLogout}> */}
-                  <a
+                  {/* <Link className="nav-link" href="#" onClick={handleLogout}> */}
+                  <Link
                     className="nav-link"
                     href="#"
                     onClick={() => {
@@ -98,15 +99,15 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
                     }}
                   >
                     LOGOUT
-                  </a>
+                  </Link>
                 </li>
               </ul>
             ) : (
               <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                 <li className="nav-item">
-                  <a className="nav-link" href="#" onClick={toggleModal}>
+                  <Link className="nav-link" href="#" onClick={toggleModal}>
                     LOGIN
-                  </a>
+                  </Link>
                 </li>
               </ul>
             )}
