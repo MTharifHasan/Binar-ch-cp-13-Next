@@ -5,6 +5,7 @@ import { checkDataLogin } from '../../action/autentication';
 const GameCard = (props) => {
     const [isLogin, setIsLogin] = useState(false);
     useEffect(() => {
+        console.log(props);
         checkDataLogin(setIsLogin)
     }, []);
 

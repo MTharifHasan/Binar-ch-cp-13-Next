@@ -39,6 +39,9 @@ class Home extends Component {
       slideshow: data_slideshow,
     })
     // await getLeaderBoard()
+    
+    console.log(data_game, "====> INI DATAGAME");
+    console.log(this.state.gameList, "====> INI Gamelist");
   }
 
   render() {

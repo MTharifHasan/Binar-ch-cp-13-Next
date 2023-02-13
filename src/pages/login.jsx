@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React ,{ Component } from "react";
 import { authFirebase } from "../config/firebase";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { checkDataLogin, firebaseLogout } from "../action/autentication";
@@ -25,8 +25,6 @@ class Login extends Component {
   state = {
     email: '',
     password: '',
-    flagginglogin: false,
-    isError: false
   }
 
   handleLogin = () => {
@@ -46,6 +44,7 @@ class Login extends Component {
         localStorage.setItem('UID', user.uid)
         window.location.href = '/'
         console.log(user.uid)
+        console.log(localStorage);
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -58,7 +57,7 @@ class Login extends Component {
       [event.target.id]: event.target.value
     })
   }
-
+  
   render() {
     return (
       
