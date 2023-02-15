@@ -137,29 +137,29 @@ const GameRPS = () => {
                             <div className="col-12">
                                 <h4 className=""><strong>PLAYER 1</strong></h4>
                             </div>
-                            <div className="col-12 container-hand-items">
+                            <div className="col-12 containerHandItems">
                                 <a href="#" onClick={() => { press(1) }} className="">
-                                    <div className="card-hand d-flex ">
-                                        <div id="hand_p_1" className="card-hand">
-                                            <img src={img_hand_batu} className="img-hand " />
+                                    <div className="cardHand d-flex ">
+                                        <div id="hand_p_1" className="cardHand">
+                                            <img src={img_hand_batu} className="imgHand " />
                                         </div>
                                     </div>
                                 </a>
                             </div>
-                            <div className="col-12  container-hand-items ">
+                            <div className="col-12  containerHandItems ">
                                 <a href="#" onClick={() => { press(2) }}>
-                                    <div className="card-hand d-flex ">
-                                        <div id="hand_p_2" className="card-hand">
-                                            <img src={img_hand_kertas} className="img-hand" />
+                                    <div className="cardHand d-flex ">
+                                        <div id="hand_p_2" className="cardHand">
+                                            <img src={img_hand_kertas} className="imgHand" />
                                         </div>
                                     </div>
                                 </a>
                             </div>
-                            <div className="col-12 container-hand-items ">
+                            <div className="col-12 containerHandItems ">
                                 <a href="#" onClick={() => { press(3) }}>
-                                    <div className="card-hand d-flex ">
-                                        <div id="hand_p_3" className="card-hand d-flex">
-                                            <img src={img_hand_gunting} className="img-hand" />
+                                    <div className="cardHand d-flex ">
+                                        <div id="hand_p_3" className="cardHand d-flex">
+                                            <img src={img_hand_gunting} className="imgHand" />
                                         </div>
                                     </div>
                                 </a>
@@ -167,10 +167,10 @@ const GameRPS = () => {
                         </div>
 
                     </div>
-                    <div className="col-3 container-hand-items justify-content">
-                        <h1 id='text_vs' className="text-vs"><strong>VS</strong></h1>
+                    <div className="col-3 containerHandItems justify-content">
+                        <h1 id='text_vs' className="textVs"><strong>VS</strong></h1>
                         <div id='winner'>
-                            <div className="card-result d-flex">
+                            <div className="cardResult d-flex">
                                 <div className="d-flex  justify-content-center">
                                     <h4 id='winner_text' className="align-middle ">WHO WIN?</h4>
                                 </div>
@@ -179,8 +179,8 @@ const GameRPS = () => {
 
                         <div className="position-absolute bottom-0 start-5 translate-middle-y">
                             <a href="#" onClick={() => { reset() }} className="">
-                                <div className="card-reset d-flex">
-                                    <img src={img_icon_refresh} className="img-reset" />
+                                <div className="cardReset d-flex">
+                                    <img src={img_icon_refresh} className="imgReset" />
                                 </div>
                             </a>
                         </div>
@@ -191,19 +191,19 @@ const GameRPS = () => {
                             <div className="col-12">
                                 <h4><strong>COM</strong></h4>
                             </div>
-                            <div className="col-12 container-hand-items ">
-                                <div id="hand_com_1" className="card-hand">
-                                    <img src={img_hand_batu} className="img-hand" />
+                            <div className="col-12 containerHandItems ">
+                                <div id="hand_com_1" className="cardHand">
+                                    <img src={img_hand_batu} className="imgHand" />
                                 </div>
                             </div>
-                            <div className="col-12 container-hand-items ">
-                                <div id="hand_com_2" className="card-hand">
-                                    <img src={img_hand_kertas} className="img-hand" />
+                            <div className="col-12 containerHandItems ">
+                                <div id="hand_com_2" className="cardHand">
+                                    <img src={img_hand_kertas} className="imgHand" />
                                 </div>
                             </div>
-                            <div className="col-12 container-hand-items ">
-                                <div id="hand_com_3" className="card-hand">
-                                    <img src={img_hand_gunting} className="img-hand" />
+                            <div className="col-12 containerHandItems ">
+                                <div id="hand_com_3" className="cardHand">
+                                    <img src={img_hand_gunting} className="imgHand" />
                                 </div>
                             </div>
                         </div>

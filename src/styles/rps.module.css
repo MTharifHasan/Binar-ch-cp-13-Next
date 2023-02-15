@@ -3,19 +3,19 @@
     background-color: #9C835F;
 }
 
-.text-vs {
+.textVs {
     font-size: 100px;
     color: #BD0000;
 }
 
-.container-hand-items {
+.containerHandItems {
     align-items: center;
     justify-content: center;
     display: flex;
     margin-bottom: 300;
 }
 
-.card-hand {
+.cardhand {
     border-radius: 25px;
     height: 150px;
     width: 150px;
@@ -24,12 +24,12 @@
     display: flex;
 }
 
-.card-hand:hover {
+.cardHand:hover {
     background-color: #C4C4C4;
 }
 
 
-.card-reset {
+.cardReset {
     border-radius: 25px;
     height: 90px;
     width: 90px;
@@ -37,21 +37,21 @@
     justify-content: center;
 }
 
-.card-reset:hover {
+.cardReset:hover {
     background-color: #C4C4C4;
 }
 
-.img-reset {
+.imgReset {
     width: 70px;
     height: auto;
 }
 
-.img-hand {
+.imgHand {
     width: 100px;
     height: auto;
 }
 
-.card-result {
+.cardResult {
     transform: rotate(-25deg);
     border-radius: 15px;
     background: #4C9654;
