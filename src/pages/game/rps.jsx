@@ -7,8 +7,7 @@ import Navbar from "../../components/NavbarComponent";
 
 // import "../../../assets/pages/games/rock_paper_scissors/style.css"
 // import "../../../public/assets/pages/games/rock_paper_scissors/style.css"
-import '@/styles/rps.module.css';
-import 'bootstrap/dist/css/bootstrap.css'
+// import '@/styles/rps.css';
 
 import { halamanGameVerifikasi, insertGameScore } from "../../action/games";
 import { checkDataLogin } from "../../action/autentication";
@@ -22,9 +21,9 @@ const GameRPS = () => {
     let have_result = false;
 
     let img_hand_batu = "/assets/images/games/rock-paper-scissors/hand_batu.png"
-    let img_hand_kertas = "/assets/images/games/rock-paper-scissors/hand_batu.png"
-    let img_hand_gunting = "/assets/images/games/rock-paper-scissors/hand_batu.png"
-    let img_icon_refresh = "/assets/images/games/rock-paper-scissors/hand_batu.png"
+    let img_hand_kertas = "/assets/images/games/rock-paper-scissors/hand_kertas.png"
+    let img_hand_gunting = "/assets/images/games/rock-paper-scissors/hand_gunting.png"
+    let img_icon_refresh = "/assets/images/games/rock-paper-scissors/icon_refresh.png"
 
     let text_vs = null;
     let winner = null;
