@@ -7,6 +7,7 @@ import '@/styles/globals.css'
 import '@/styles/Footer.module.css'
 import '@/styles/login.module.css'
 import '@/styles/slideshow.module.css'
+import '@/styles/rps.module.css'
 import '@/styles/Home.module.css'
 import Head from "next/head";
 import Script from "next/script";

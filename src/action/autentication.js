@@ -7,6 +7,7 @@ const auth = getAuth();
 export const checkDataLogin = async (setIsLogin, setDataUser = () => {
     }, setDataUserInfo = () => { }) => {
         const uuid = await localStorage.getItem('UID');
+        // console.log("UUID ==> ", uuid)
         if (uuid == null) {
             setIsLogin(false)
         } else {

@@ -5,17 +5,15 @@ import Navbar from "../../components/NavbarComponent";
 import { database } from "../../config/firebase"
 import { halamanGameVerifikasi, insertGameScore } from "../../action/games";
 import { checkDataLogin } from "../../action/autentication";
-import { useAuth } from "@/action/fb_storage";
+// import { useAuth } from "@/action/fb_storage";
 // https://react-unity-webgl.dev/
 // https://github.com/jeffreylanters/react-unity-webgl/discussions/264
 
 const GameSpaceWar = () => {
   // const [isLogin, setIsLogin] = useState(true);
-  const currentUser = useAuth();
+  // const currentUser = useAuth();
 
   const game_id = "-NG-FxcdZAq13GcqcZIm";
-//   const uuid = localStorage.getItem("UID");
-  const uuid = "localStorage.getItem('UID')";
   const { unityProvider, sendMessage, addEventListener, removeEventListener } =
     useUnityContext({
       loaderUrl: "/game/space_war/BinarSpaceWar.loader.js",
@@ -26,19 +24,13 @@ const GameSpaceWar = () => {
 
   // sendMessage("JavascriptHook", "ChangeData", "HarlanSR");
 
-    const handleGameOver = useCallback((userName2, score) => {
-        insertGameScore(game_id, uuid, score);
+    const handleGameOver = useCallback(async (userName2, score) => {
+        insertGameScore(game_id, await localStorage.getItem('UID'), score);
     }, []);
-
-    // const cek_data_user = async () => {
-    //     console.log("Data User =========>", await currentUser)
-    // }
 
     useEffect( () => {
-        halamanGameVerifikasi()
-        // cek_data_user()
+      halamanGameVerifikasi()
     }, []);
-  
 
 
     useEffect(() => {

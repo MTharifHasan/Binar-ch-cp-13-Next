@@ -7,14 +7,15 @@ import Navbar from "../../components/NavbarComponent";
 
 // import "../../../assets/pages/games/rock_paper_scissors/style.css"
 // import "../../../public/assets/pages/games/rock_paper_scissors/style.css"
-import '../../styles/rps.module.css';
+import '@/styles/rps.module.css';
+import 'bootstrap/dist/css/bootstrap.css'
 
 import { halamanGameVerifikasi, insertGameScore } from "../../action/games";
 import { checkDataLogin } from "../../action/autentication";
 
 const GameRPS = () => {
     const game_id = "-NG-Fxccy-8f1RZoup6D"
-    const uuid = "localStorage.getItem('UID')";
+    // const uuid = "localStorage.getItem('UID')";
 
     let color_chose = '#C4C4C4';
     let color_unchose = '#00000000';
@@ -58,7 +59,7 @@ const GameRPS = () => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    function press(you_chose) {
+    async function press(you_chose) {
         console.log('Button has been pressed');
         if (have_result) { return; }
 
@@ -91,11 +92,11 @@ const GameRPS = () => {
         text_vs.style.display = "none";
 
         if (who_won === 1) {
-            insertGameScore(game_id, uuid, 2);
+            insertGameScore(game_id, await localStorage.getItem('UID'), 2);
         } else if (who_won === 2) {
-            insertGameScore(game_id, uuid, -1);
+            insertGameScore(game_id, await localStorage.getItem('UID'), -1);
         } else {
-            insertGameScore(game_id, uuid, 0);
+            insertGameScore(game_id, await localStorage.getItem('UID'), 0);
         }
     }
 
