@@ -1,7 +1,7 @@
-import React ,{ Component } from "react";
-import { authFirebase } from "../config/firebase";
-import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
-import { checkDataLogin, firebaseLogout } from "../action/autentication";
+import { Component } from "react";
+import { authFirebase } from "../../services/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+// import { checkDataLogin, firebaseLogout } from "../../action/autentication";
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -9,31 +9,21 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
+import Link from 'next/link'
 
 
-
-
-import logo from '../components/images/echamp.png';
+import logo from '../images/echamp.png';
+import loginPict from '../images/login-image.png';
 import { connect } from 'react-redux'
-
-
-
-import styles from '../styles/login.module.css'
-import Link from "next/link";
-
-const auth = getAuth();
 
 class Login extends Component {
   state = {
     email: '',
-    password: '',
+    password: ''
   }
 
   handleLogin = () => {
-    console.log(this.state);
-        
-    this.setState({flagginglogin:true})
-    signInWithEmailAndPassword(auth, this.state.email, this.state.password)
+    signInWithEmailAndPassword(authFirebase, this.state.email, this.state.password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user)
@@ -41,12 +31,11 @@ class Login extends Component {
           alert("Akun ini belum verifikasi email")
           // firebaseLogout()
         }else{
+          localStorage.setItem('jwt-token', user.accessToken)
+          localStorage.setItem('UID', user.uid)
+          window.location.href = '/'
         }
-        localStorage.setItem('jwt-token', user.accessToken)
-        localStorage.setItem('UID', user.uid)
-        window.location.href = '/'
-        console.log(user.uid)
-        console.log(localStorage);
+        // console.log(user.uid)
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -59,20 +48,26 @@ class Login extends Component {
       [event.target.id]: event.target.value
     })
   }
-  
+
   render() {
+    console.log("data authfirebase :", authFirebase)
     return (
-      
-        <div className="show-grid modal_body">
-          <Container>
+      <Modal
+        show={this.props.showModal}
+        onHide={this.props.toggleFunc}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered>
+        <Modal.Body className="show-grid modal_body" style={{border: "none", padding: "0",borderRadius: "100px"}}>
+          <Container style={{paddingRight: "10px",paddingLeft: "0"}}>
             <Row>
-              <Col md={6} className="row_left">
+              <Col md={6} className={style.rowleft} style={style.rowleft}>
               </Col>
-              <Col md={6} className="row_right">
-                <div>
-                  <img src={logo} className="logo_image" />
-                </div>
-                <div className="form_login">
+              <Col md={6} style={style.rowright}>
+              <div>
+                  <img src={logo.src}  style={style.logoimage} />
+              </div>
+                <div className="form_login" style={{width: "90%",paddingTop: "20%"}}>
                   <Form>
                     <Form.Group className="mb-3">
                       <Form.Control
@@ -95,8 +90,8 @@ class Login extends Component {
                     </div>
                   </Form>
                 </div>
-                <div className="lupa_pass">
-                  <span>Lupa password? klik&nbsp;<Link href="#">disini</Link></span>
+                <div className="lupa_pass" style={{paddingBottom: "20%",textDecoration: "none"}}>
+                  <span>Lupa password? klik&nbsp;<a href="#">disini</a></span>
                 </div>
                 <div >
                   <span>Belum punya akun?&nbsp;<Link href="/register">Buat akun</Link>&nbsp;baru</span>
@@ -105,16 +100,38 @@ class Login extends Component {
               </Col>
             </Row>
           </Container>
-        </div>
-      
+        </Modal.Body>
+      </Modal>
     )
   }
 }
 
-// const reduxState = (state) => ({
-//   userName: state.user
-// })
+var style = {
+  rowleft: {
+    backgroundImage: `url(${loginPict.src})`,
+    maxWidth: "430px",
+    height: "553px",
+    display: "flex",
+    justifyContent: "left",
+    backgroundColor: "#1e1e1e",
+    backgroundRepeat: "no-repeat",
+  },
+  rowright: {
+    maxWidth: "430px",
+    maxHeight: "553px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  },
+  logoimage: {
+      maxWidth: "216px",
+      maxHeight: "54px"
+  }
+}
 
-// export default connect(reduxState, null)(Login)
+const reduxState = (state) => ({
+  userName: state.user
+})
 
 export default Login

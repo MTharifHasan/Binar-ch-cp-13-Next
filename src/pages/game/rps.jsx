@@ -1,29 +1,18 @@
 import { Component, useState, useEffect } from "react";
-import Navbar from "../../components/NavbarComponent";
-// import img_hand_batu from "../../assets/images/games/rock-paper-scissors/hand_batu.png"
-// import img_hand_kertas from "../../assets/images/games/rock-paper-scissors/hand_kertas.png"
-// import img_hand_gunting from "../../assets/images/games/rock-paper-scissors/hand_gunting.png"
-// import img_icon_refresh from "../../assets/images/games/rock-paper-scissors/icon_refresh.png"
-
-// import "../../../assets/pages/games/rock_paper_scissors/style.css"
-// import "../../../public/assets/pages/games/rock_paper_scissors/style.css"
-// import '@/styles/rps.css';
-
+import Navbar from "../../components/Navbar";
+import img_hand_batu from "../../components/images/games/rock-paper-scissors/hand_batu.png"
+import img_hand_kertas from "../../components/images/games/rock-paper-scissors/hand_kertas.png"
+import img_hand_gunting from "../../components/images/games/rock-paper-scissors/gunting.png"
+import img_icon_refresh from "../../components/images/games/rock-paper-scissors/icon_refresh.png"
 import { halamanGameVerifikasi, insertGameScore } from "../../action/games";
-import { checkDataLogin } from "../../action/autentication";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const GameRPS = () => {
     const game_id = "-NG-Fxccy-8f1RZoup6D"
-    // const uuid = "localStorage.getItem('UID')";
 
     let color_chose = '#C4C4C4';
     let color_unchose = '#00000000';
     let have_result = false;
-
-    let img_hand_batu = "/assets/images/games/rock-paper-scissors/hand_batu.png"
-    let img_hand_kertas = "/assets/images/games/rock-paper-scissors/hand_kertas.png"
-    let img_hand_gunting = "/assets/images/games/rock-paper-scissors/hand_gunting.png"
-    let img_icon_refresh = "/assets/images/games/rock-paper-scissors/icon_refresh.png"
 
     let text_vs = null;
     let winner = null;
@@ -123,9 +112,6 @@ const GameRPS = () => {
         }
         reset();
     }, []);
-
-
-
     return (
         <div style={{ backgroundColor: "#9C835F" }}>
             <Navbar bgColor="#4A4A5C" />
@@ -137,29 +123,29 @@ const GameRPS = () => {
                             <div className="col-12">
                                 <h4 className=""><strong>PLAYER 1</strong></h4>
                             </div>
-                            <div className="col-12 containerHandItems">
+                            <div className="col-12 container-hand-items">
                                 <a href="#" onClick={() => { press(1) }} className="">
-                                    <div className="cardHand d-flex ">
-                                        <div id="hand_p_1" className="cardHand">
-                                            <img src={img_hand_batu} className="imgHand " />
+                                    <div className="card-hand d-flex ">
+                                        <div id="hand_p_1" className="card-hand">
+                                            <img src={img_hand_batu.src} className="img-hand " />
                                         </div>
                                     </div>
                                 </a>
                             </div>
-                            <div className="col-12  containerHandItems ">
+                            <div className="col-12  container-hand-items ">
                                 <a href="#" onClick={() => { press(2) }}>
-                                    <div className="cardHand d-flex ">
-                                        <div id="hand_p_2" className="cardHand">
-                                            <img src={img_hand_kertas} className="imgHand" />
+                                    <div className="card-hand d-flex ">
+                                        <div id="hand_p_2" className="card-hand">
+                                            <img src={img_hand_kertas.src} className="img-hand" />
                                         </div>
                                     </div>
                                 </a>
                             </div>
-                            <div className="col-12 containerHandItems ">
+                            <div className="col-12 container-hand-items ">
                                 <a href="#" onClick={() => { press(3) }}>
-                                    <div className="cardHand d-flex ">
-                                        <div id="hand_p_3" className="cardHand d-flex">
-                                            <img src={img_hand_gunting} className="imgHand" />
+                                    <div className="card-hand d-flex ">
+                                        <div id="hand_p_3" className="card-hand d-flex">
+                                            <img src={img_hand_gunting.src} className="img-hand" />
                                         </div>
                                     </div>
                                 </a>
@@ -167,10 +153,10 @@ const GameRPS = () => {
                         </div>
 
                     </div>
-                    <div className="col-3 containerHandItems justify-content">
-                        <h1 id='text_vs' className="textVs"><strong>VS</strong></h1>
+                    <div className="col-3 container-hand-items justify-content">
+                        <h1 id='text_vs' className="text-vs"><strong>VS</strong></h1>
                         <div id='winner'>
-                            <div className="cardResult d-flex">
+                            <div className="card-result d-flex">
                                 <div className="d-flex  justify-content-center">
                                     <h4 id='winner_text' className="align-middle ">WHO WIN?</h4>
                                 </div>
@@ -179,8 +165,8 @@ const GameRPS = () => {
 
                         <div className="position-absolute bottom-0 start-5 translate-middle-y">
                             <a href="#" onClick={() => { reset() }} className="">
-                                <div className="cardReset d-flex">
-                                    <img src={img_icon_refresh} className="imgReset" />
+                                <div className="card-reset d-flex">
+                                    <img src={img_icon_refresh.src} className="img-reset" />
                                 </div>
                             </a>
                         </div>
@@ -191,19 +177,19 @@ const GameRPS = () => {
                             <div className="col-12">
                                 <h4><strong>COM</strong></h4>
                             </div>
-                            <div className="col-12 containerHandItems ">
-                                <div id="hand_com_1" className="cardHand">
-                                    <img src={img_hand_batu} className="imgHand" />
+                            <div className="col-12 container-hand-items ">
+                                <div id="hand_com_1" className="card-hand">
+                                    <img src={img_hand_batu.src} className="img-hand" />
                                 </div>
                             </div>
-                            <div className="col-12 containerHandItems ">
-                                <div id="hand_com_2" className="cardHand">
-                                    <img src={img_hand_kertas} className="imgHand" />
+                            <div className="col-12 container-hand-items ">
+                                <div id="hand_com_2" className="card-hand">
+                                    <img src={img_hand_kertas.src} className="img-hand" />
                                 </div>
                             </div>
-                            <div className="col-12 containerHandItems ">
-                                <div id="hand_com_3" className="cardHand">
-                                    <img src={img_hand_gunting} className="imgHand" />
+                            <div className="col-12 container-hand-items ">
+                                <div id="hand_com_3" className="card-hand">
+                                    <img src={img_hand_gunting.src} className="img-hand" />
                                 </div>
                             </div>
                         </div>

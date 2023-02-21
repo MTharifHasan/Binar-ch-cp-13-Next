@@ -6,6 +6,7 @@ import { authFirebase } from "../config/firebase";
 import { getStorage } from 'firebase/storage';
 import { Alert } from "react-bootstrap";
 import { set } from "firebase/database"
+import { updateProfileImg } from "./fb_database";
 
 const auth = getAuth();
 const storage = getStorage();
@@ -39,6 +40,7 @@ export async function upload(file,currentUser){
       const fileRef = ref(storage, currentUser.uid + '.png');
       const snapshot = await uploadBytes(fileRef,file);
       const photoURL = await getDownloadURL(fileRef);
+      updateProfileImg(currentUser,photoURL)
       updateProfile(currentUser, {photoURL});
       alert('photo profile updated!')
       

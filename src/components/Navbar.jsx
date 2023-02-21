@@ -1,13 +1,9 @@
 import React from "react";
 import logo from "./images/echamp-white.png";
-import { Login } from "../pages/login.jsx";
+import Login from "./login/login";
 import { useState, useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-import { onAuthStateChanged } from "firebase/auth";
-import { authFirebase } from "../config/firebase";
 import { checkDataLogin, firebaseLogout } from "../action/autentication";
-import { useNavigate } from "react-router-dom";
-import Link from "next/link";
+import Link from 'next/link'
 
 const Navbar = ({ bgColor, user, transparant = false }) => {
   const [showModal, setShowModal] = useState(false);
@@ -33,22 +29,16 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
     checkDataLogin(setIsLogin);
   }, []);
 
-  console.log(Login);
-
   return (
     <>
-      <nav
-        className="navbar navbar-expand-lg navbar-dark fixed-top"
-        style={
-          transparant
-            ? null
-            : { backgroundColor: bgColor ? `${bgColor}` : "#212529" }
-        }
-        id="mainNav"
+      <nav 
+      className="navbar navbar-expand-lg navbar-dark fixed-top"
+      style={transparant? null : { backgroundColor: bgColor ? `${bgColor}` : "#212529" }}
+      id="mainNav"
       >
         <div className="container">
           <Link className="navbar-brand" href="/">
-            <img src={logo} />
+              <img src={logo.src} style={{width: "100%"}}/>
           </Link>
           <button
             className="navbar-toggler"
@@ -63,7 +53,7 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
             <i className="fas fa-bars ms-1"></i>
           </button>
           <div className="collapse navbar-collapse" id="navbarResponsive">
-            <ul className="navbar-nav text-uppercase ms-5 py-4 py-lg-0">
+          <ul className="navbar-nav text-uppercase ms-5 py-4 py-lg-0">
               <li className="nav-item">
                 <Link className="nav-link" href="/#">
                   HOME
@@ -88,7 +78,7 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  {/* <Link className="nav-link" href="#" onClick={handleLogout}> */}
+                  {/* <a className="nav-link" href="#" onClick={handleLogout}> */}
                   <Link
                     className="nav-link"
                     href="#"
@@ -114,10 +104,8 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
           </div>
         </div>
       </nav>
-      { (
       <Login showModal={showModal} toggleFunc={toggleModal} />
-       ) }
-      </>
+    </>
   );
 };
 

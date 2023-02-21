@@ -1,7 +1,7 @@
 import { Component, useState, useEffect, useCallback, Fragment } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import { Form, Container, Card, CardGroup, Row, Col } from "react-bootstrap";
-import Navbar from "../../components/NavbarComponent";
+import Navbar from "../../components/Navbar";
 import { database } from "../../config/firebase"
 import { halamanGameVerifikasi, insertGameScore } from "../../action/games";
 import { checkDataLogin } from "../../action/autentication";

@@ -1,5 +1,5 @@
 import React, { Component, useState,useEffect } from "react";
-import Navbar from "../components/NavbarComponent";
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { MDBTypography } from 'mdb-react-ui-kit';
 import {
@@ -12,6 +12,7 @@ import {
   Button
 } from "react-bootstrap";
 
+import { set, ref, push, onValue, update, getDatabase } from "firebase/database";
 import "../styles/profiles.module.css";
 import { checkDataLogin } from "../action/autentication";
 import { halamanGameVerifikasi } from "../action/games";
@@ -19,9 +20,13 @@ import { getLeaderBoard } from "../action/games";
 // import { useAuth,upload } from "../../config/firebase";
 import { useAuth,upload } from "../action/fb_storage";
 import Link from "next/link";
+import { updateProfileImg } from "@/action/fb_database";
+
+
 
 const Profiles = (props) => {
       halamanGameVerifikasi();
+      const db = getDatabase()
       const dataUser = [];
       const currentUser = useAuth();
       const [photo, setPhoto] = useState(null);
@@ -33,7 +38,7 @@ const Profiles = (props) => {
         }
       }
 
-      function handleClick(){
+      async function handleClick(){
         if(photo == null){
           alert(`can't upload empty data`)
         }else{
@@ -71,7 +76,7 @@ const Profiles = (props) => {
 
       
       const getData = async () => {
-        const data_new = await getLeaderBoard(10)
+        const data_new = await getLeaderBoard()
         setDataList(data_new)
         console.log(data_new)
     }
@@ -103,8 +108,9 @@ const Profiles = (props) => {
           >
             <div className="row">
               <div className="col-3">
-              <Card className="bg-dark" style={{ width: '100%' }}>
-                <Card.Img variant="top" src={photoURL}/> 
+              <Card className="bg-dark" >
+                <Card.Header style={{backgroundImage: `url(${photoURL})`, width: "100%", height: "250px", backgroundRepeat: "no-repeat", backgroundSize: "cover"}}></Card.Header>
+                {/* <Card.Img variant="top" style={{ width: '100%', height:"150px", backgroundColor: "red" }} src={photoURL}/>  */}
                 <Card.Body style={{position: "relative"}}>
                 <div style={{position: "absolute", top:"1px", left:"0" , right:"0", backgroundColor:"rgba(255,255,255,0.8)"}}>
                   <Form.Control onChange={handleChange} type="file" size="sm" />

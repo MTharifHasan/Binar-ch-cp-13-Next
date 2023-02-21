@@ -50,6 +50,13 @@ export function registerUser2(id_player, name, username, email,city, social_medi
   });
 }
 
+export function registerProfile(currentUser,photoURL) {
+  // const db = getDatabase();
+  set(ref(db, 'game_user/' + currentUser.uid), {
+    photoURL,
+  });
+}
+
 // get one user by id
 export const getDataUser = (id) => {
   return new Promise((resolve, reject) => {
@@ -161,8 +168,8 @@ export const updateScore = (id, total_score) => {
 };
 
 //update profile photo
-export const updateProfileImg = (id, profile_picture) => {
-  const dbRef = ref(db, `game_user/${id}`);
+export const updateProfileImg = (currentUser, profile_picture) => {
+  const dbRef = ref(db, `game_user/${currentUser.uid}`);
   const data = {
     profile_picture,
   };

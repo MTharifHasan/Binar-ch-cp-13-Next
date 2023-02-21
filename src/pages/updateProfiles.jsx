@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import React, { Component, useState, useEffect} from "react";
-import Navbar from "../components/NavbarComponent";
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {
   Form,

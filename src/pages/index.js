@@ -11,7 +11,7 @@ import GameCard from '../components/home/game_card'
 import Slideshow from '../components/home/slideshow'
 import Footer from "../components/Footer";
 import { getLeaderBoard, retrieveAllGames, retrieveAllSlideshow, seederGame } from "../action/games";
-import Navbar from "../components/NavbarComponent";
+import Navbar from "../components/Navbar";
 import Leaderboard from "../components/home/leaderboard";
 
 // key={data.id} game_id={data.id} title={data.data.game_title} description={data.data.game_description} image={data.data.game_image} url={data.data.game_url}
@@ -38,10 +38,6 @@ class Home extends Component {
       gameList: data_game,
       slideshow: data_slideshow,
     })
-    // await getLeaderBoard()
-    
-    console.log(data_game, "====> INI DATAGAME");
-    console.log(this.state.gameList, "====> INI Gamelist");
   }
 
   render() {
