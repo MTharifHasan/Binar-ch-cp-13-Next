@@ -1,10 +1,9 @@
-import { Component, useState, useEffect, useCallback, Fragment } from "react";
+import { useEffect, useCallback} from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
-import { Form, Container, Card, CardGroup, Row, Col } from "react-bootstrap";
+import { Container} from "react-bootstrap";
 import Navbar from "../../components/Navbar";
-import { database } from "../../config/firebase"
 import { halamanGameVerifikasi, insertGameScore } from "../../action/games";
-import { checkDataLogin } from "../../action/autentication";
+import Link from 'next/link'
 // import { useAuth } from "@/action/fb_storage";
 // https://react-unity-webgl.dev/
 // https://github.com/jeffreylanters/react-unity-webgl/discussions/264
@@ -54,6 +53,7 @@ const GameSpaceWar = () => {
                         }}
                         unityProvider={unityProvider} />
                 </div>
+                <Link type="submit" href='/pdfview'className="btn btn-primary" style={{position:'absolute', bottom:'55px', right: '15px'}}>Get History</Link>
             </Container>
         </div>
   );

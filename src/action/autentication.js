@@ -1,4 +1,3 @@
-import { authFirebase } from "../config/firebase";
 import { onAuthStateChanged, signOut, getAuth } from "firebase/auth";
 import { getDataUser } from "./fb_database";
 

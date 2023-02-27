@@ -1,8 +1,5 @@
-import { async } from "@firebase/util";
-import { set, ref, push, onValue, update, getDatabase } from "firebase/database";
-import { database } from "../config/firebase";
-import { authFirebase } from "../config/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { set, ref, push, onValue, update,getDatabase } from "firebase/database";
+import { database } from "@/services/firebase";
 
 const db = getDatabase();
 

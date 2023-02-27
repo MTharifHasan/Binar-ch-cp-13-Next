@@ -3,6 +3,7 @@ import { Form, Container, Card, CardGroup, Row, Col } from 'react-bootstrap';
 // import { authFirebase, database } from "../config/firebase"
 import '../styles/styles.module.css';
 // import '../styles/scripts.js';
+import { Carousel } from "react-bootstrap";
 
 // import imgHeader from './assets/images/header-bg.jpg'
 import logo from '../components/images/echamp-white.png'
@@ -102,6 +103,16 @@ class Home extends Component {
         <section className="page-section  py-5" style={style.section_leaderboard} id="leaderboard">
           <Leaderboard />
         </section>
+        <div className="container" style={{paddingTop:'20px', paddingBottom:"10px"}}>
+              <h3 className='text-center mb-4'>PAPER ROCK SCISSORS TUTORIAL</h3>   
+                      <div className="video-section">
+                        <video style={{width:'100%'}} controls>
+                            <source src="https://res.cloudinary.com/dzijcav6q/video/upload/v1677196597/How_to_play_Rock_Paper_Scissors_v22r8s.mp4"></source>
+                            Sorry, your browser doesnt support videos.
+                        </video>
+                        </div>
+        </div>         
+
         <Footer />
 
       </div >
@@ -137,6 +148,9 @@ var style = {
   },
   section_leaderboard: {
     backgroundColor: '#353637',
+  },
+  controls:{
+    zIndex : 9999
   }
 };
 

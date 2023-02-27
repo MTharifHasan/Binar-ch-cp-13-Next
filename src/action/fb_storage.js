@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react"
-import { getAuth,createUserWithEmailAndPassword, signInWithEmailAndPasswor, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
-import { getDownloadURL, ref , uploadBytes, deleteObject,getMetadata,updateMetadata } from "firebase/storage"
-import { initializeApp } from "firebase/app";
-import { authFirebase } from "../config/firebase";
+import { getAuth, onAuthStateChanged,  updateProfile } from "firebase/auth";
+import { getDownloadURL, ref , uploadBytes, deleteObject } from "firebase/storage"
 import { getStorage } from 'firebase/storage';
-import { Alert } from "react-bootstrap";
-import { set } from "firebase/database"
 import { updateProfileImg } from "./fb_database";
 
 const auth = getAuth();

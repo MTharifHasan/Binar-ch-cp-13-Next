@@ -1,15 +1,8 @@
 import React, { Component } from "react";
-// import { Button, Container, Grid, TextField } from "@mui/material";
-import { authFirebase } from "../config/firebase";
 import Navbar from "../components/Navbar";
-
 import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container'
-import Card from 'react-bootstrap/Card';
-
 import { createUserWithEmailAndPassword, sendEmailVerification, getAuth } from "firebase/auth";
 import { registerUser2 } from "../action/fb_database"
 

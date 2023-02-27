@@ -1,7 +1,5 @@
-import { set, ref, push, onValue, query, getDatabase } from "firebase/database";
-import { database } from "../config/firebase";
+import {  ref, push, onValue, getDatabase } from "firebase/database";
 import { checkDataLogin } from "./autentication";
-import { useAuth } from "./fb_storage";
 import data from './data/data.json'
 
 

@@ -1,13 +1,15 @@
-import { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import img_hand_batu from "../../components/images/games/rock-paper-scissors/hand_batu.png"
 import img_hand_kertas from "../../components/images/games/rock-paper-scissors/hand_kertas.png"
 import img_hand_gunting from "../../components/images/games/rock-paper-scissors/gunting.png"
 import img_icon_refresh from "../../components/images/games/rock-paper-scissors/icon_refresh.png"
 import { halamanGameVerifikasi, insertGameScore } from "../../action/games";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Link from 'next/link'
+import { off, set } from "firebase/database";
 
 const GameRPS = () => {
+    
     const game_id = "-NG-Fxccy-8f1RZoup6D"
 
     let color_chose = '#C4C4C4';
@@ -32,6 +34,7 @@ const GameRPS = () => {
         text_vs.style.display = "block";
     }
 
+
     function card_hand(handChose, who) {
         for (let i = 1; i <= 3; i++) {
             hand[who][i].style.backgroundColor = color_unchose;
@@ -49,15 +52,16 @@ const GameRPS = () => {
 
     async function press(you_chose) {
         console.log('Button has been pressed');
-        if (have_result) { return; }
-
+        if (have_result) {return }
         have_result = true;
-        let com_chose = getRandomInt(1, 3);
+    
+        let com_chose = await getRandomInt(1, 3);
         let who_won = 0;
         let res = you_chose - com_chose;
 
         card_hand(com_chose, "com");
         card_hand(you_chose, "player");
+
 
         if (res != 0) {
             if (res < 2 && res > -2) {
@@ -75,6 +79,7 @@ const GameRPS = () => {
             }
         }
 
+
         winner_text.innerHTML = result_text[who_won];
         winner.style.display = "block";
         text_vs.style.display = "none";
@@ -86,9 +91,10 @@ const GameRPS = () => {
         } else {
             insertGameScore(game_id, await localStorage.getItem('UID'), 0);
         }
+
+        
     }
-
-
+    
     useEffect( () => {
         halamanGameVerifikasi();
         let hand_com_1 = document.getElementById('hand_com_1');
@@ -112,10 +118,10 @@ const GameRPS = () => {
         }
         reset();
     }, []);
+
     return (
         <div style={{ backgroundColor: "#9C835F" }}>
-            <Navbar bgColor="#4A4A5C" />
-
+            <Navbar bgColor="#4A4A5C" transparant='1'/>
             <div className="container">
                 <div className="row text-center align-items-center justify-content-center" style={{ height: "100vh" }}>
                     <div className="col-3 ">
@@ -142,7 +148,7 @@ const GameRPS = () => {
                                 </a>
                             </div>
                             <div className="col-12 container-hand-items ">
-                                <a href="#" onClick={() => { press(3) }}>
+                                <a href="#" onClick={() => { press(3) }} >
                                     <div className="card-hand d-flex ">
                                         <div id="hand_p_3" className="card-hand d-flex">
                                             <img src={img_hand_gunting.src} className="img-hand" />
@@ -164,7 +170,7 @@ const GameRPS = () => {
                         </div>
 
                         <div className="position-absolute bottom-0 start-5 translate-middle-y">
-                            <a href="#" onClick={() => { reset() }} className="">
+                            <a href="#" onClick={() => { reset()}} id='refresh'>
                                 <div className="card-reset d-flex">
                                     <img src={img_icon_refresh.src} className="img-reset" />
                                 </div>
@@ -192,13 +198,14 @@ const GameRPS = () => {
                                     <img src={img_hand_gunting.src} className="img-hand" />
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
-
-
                 </div>
+                <Link type="submit" href='/pdfview'className="btn btn-primary" style={{position:'absolute', bottom:'10px', right: '10px'}}>Get History</Link>
             </div>
         </div >
+        
     )
 }
 
