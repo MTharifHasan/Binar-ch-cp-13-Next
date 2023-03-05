@@ -50,6 +50,7 @@ class Home extends Component {
           <div className="container">
             <div className="masthead-subheading" style={{ fontSize: 25 }}><b>FIND YOUR FAVORITE GAME</b></div>
             <div className="masthead-heading text-uppercase" style={{ fontSize: 60 }}><b>PLAY ONLINE</b></div>
+            <div className="masthead-heading text-uppercase" style={{ fontSize: 30 }}><b>With your Friend</b></div>
           </div>
         </header >
       
