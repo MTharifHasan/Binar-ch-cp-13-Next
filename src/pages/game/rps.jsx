@@ -4,36 +4,49 @@ import img_hand_batu from "../../components/images/games/rock-paper-scissors/han
 import img_hand_kertas from "../../components/images/games/rock-paper-scissors/hand_kertas.png"
 import img_hand_gunting from "../../components/images/games/rock-paper-scissors/gunting.png"
 import img_icon_refresh from "../../components/images/games/rock-paper-scissors/icon_refresh.png"
-import { halamanGameVerifikasi, insertGameScore } from "../../action/games";
+import { getScore, halamanGameVerifikasi, insertGameScore } from "../../action/games";
 import Link from 'next/link'
+import Router from 'next/router'
 import { off, set } from "firebase/database";
 
-const GameRPS = () => {
-    
+const GameRPS = (props) => {
     const game_id = "-NG-Fxccy-8f1RZoup6D"
 
     let color_chose = '#C4C4C4';
     let color_unchose = '#00000000';
     let have_result = false;
+    
 
     let text_vs = null;
     let winner = null;
     let winner_text = null;
 
+
     let result_text = ["DRAW", "PLAYER 1<br>WIN", "COM<br>WIN"];
     let hand_p = [];
     let hand_com = [];
+    // let [round,setRound] = useState(1)
+    let round = 0
+    let pscore = 0
+    
 
     let hand = null
 
+    function tambahData(){
+        pscore += 1
+        alert(pscore)
+        return
+    }
+
     function reset() {
-        have_result = false;
-        card_hand(0, "com");
-        card_hand(0, "player");
+        const resetBtn = document.getElementById('resetBtn')
+        resetBtn.style.display = 'none'
+        // have_result = false;
+        // card_hand(0, "com");
+        // card_hand(0, "player");
         winner.style.display = "none";
         text_vs.style.display = "block";
     }
-
 
     function card_hand(handChose, who) {
         for (let i = 1; i <= 3; i++) {
@@ -51,9 +64,12 @@ const GameRPS = () => {
     }
 
     async function press(you_chose) {
+        const resetBtn = document.getElementById('resetBtn')
         console.log('Button has been pressed');
-        if (have_result) {return }
+        round += 1
+        // if (have_result) {return}
         have_result = true;
+        resetBtn.style.display = 'block' 
     
         let com_chose = await getRandomInt(1, 3);
         let who_won = 0;
@@ -78,21 +94,37 @@ const GameRPS = () => {
                 }
             }
         }
-
-
+        
         winner_text.innerHTML = result_text[who_won];
         winner.style.display = "block";
-        text_vs.style.display = "none";
-
-        if (who_won === 1) {
-            insertGameScore(game_id, await localStorage.getItem('UID'), 2);
-        } else if (who_won === 2) {
-            insertGameScore(game_id, await localStorage.getItem('UID'), -1);
-        } else {
-            insertGameScore(game_id, await localStorage.getItem('UID'), 0);
-        }
+        text_vs.style.display = "none"
 
         
+        
+        if(who_won === 1){
+            pscore += 1
+            alert(pscore)
+        }
+
+        // if (who_won === 1) {
+        //     insertGameScore(game_id, await localStorage.getItem('UID'), 2);
+        //     players += 1
+        // } else if (who_won === 2) {
+        //     insertGameScore(game_id, await localStorage.getItem('UID'), -1);
+        //     coms += 1
+        // } else {
+        //     insertGameScore(game_id, await localStorage.getItem('UID'), 0);
+        // }
+
+        // if(round === 10){
+        //     resetBtn.style.display = 'none'
+        // }
+
+        // setTimeout(() => {
+        //     if(who_won === 1){   
+        // }
+        // },1000)
+
     }
     
     useEffect( () => {
@@ -111,18 +143,18 @@ const GameRPS = () => {
 
         hand_p = [null, hand_p_1, hand_p_2, hand_p_3];
         hand_com = [null, hand_com_1, hand_com_2, hand_com_3];
-
         hand = {
             'player': hand_p,
             'com': hand_com
         }
         reset();
-    }, []);
+    },);
 
     return (
         <div style={{ backgroundColor: "#9C835F" }}>
             <Navbar bgColor="#4A4A5C" transparant='1'/>
             <div className="container">
+            <h1 style={{position: 'absolute', top:'97px', left:'97vh'}}>Round {pscore}</h1>
                 <div className="row text-center align-items-center justify-content-center" style={{ height: "100vh" }}>
                     <div className="col-3 ">
                         <div className="row ">
@@ -138,7 +170,7 @@ const GameRPS = () => {
                                     </div>
                                 </a>
                             </div>
-                            <div className="col-12  container-hand-items ">
+                            <div className="col-12  container-hand-items disabled">
                                 <a href="#" onClick={() => { press(2) }}>
                                     <div className="card-hand d-flex ">
                                         <div id="hand_p_2" className="card-hand">
@@ -169,8 +201,8 @@ const GameRPS = () => {
                             </div>
                         </div>
 
-                        <div className="position-absolute bottom-0 start-5 translate-middle-y">
-                            <a href="#" onClick={() => { reset()}} id='refresh'>
+                        <div id="resetBtn" className="position-absolute bottom-0 start-5 translate-middle-y">
+                            <a href="#" onClick={() => { reset() }} id='refresh'>
                                 <div className="card-reset d-flex">
                                     <img src={img_icon_refresh.src} className="img-reset" />
                                 </div>
@@ -202,10 +234,17 @@ const GameRPS = () => {
                         </div>
                     </div>
                 </div>
+
+                <a href="#" onClick={() => {tambahData()}}>add</a>
+
+                <div className="card-result-finish" style={{display:'none',position:'absolute', top:'20vw', right:'25vw'}}>
+                    <div className="d-flex justify-content-center">
+                        <h4 id='winner_text' className="align-middle">WHO WILL WIN THIS GAME?</h4>
+                    </div>
+                </div>
                 <Link type="submit" href='/pdfview'className="btn btn-primary" style={{position:'absolute', bottom:'10px', right: '10px'}}>Get History</Link>
             </div>
-        </div >
-        
+            </div>
     )
 }
 

@@ -62,3 +62,13 @@ body {
     justify-content: center;
 
 }
+.card-result-finish {
+    border-radius: 15px;
+    background: #4C9654;
+    color: white;
+    height: 100px;
+    width: 50vw;
+    align-items: center;
+    justify-content: center;
+
+}

@@ -1,7 +1,7 @@
-import { set, ref, push, onValue, update,getDatabase } from "firebase/database";
-import { database } from "@/services/firebase";
+import { set, ref, push, onValue, update } from "firebase/database";
+import { database } from "../services/firebase";
 
-const db = getDatabase();
+const db = database;
 
 //write biodata
 
